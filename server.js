@@ -55,7 +55,7 @@ const promptCompany = async () => {
 promptCompany();
 
 const viewDepartments = () => {
-    db.query(`SELECT * FROM department`, (err, rows) => {
+    db.query(`SELECT * department`, (err, rows) => {
         if (err) throw err
         console.table(rows);
     });
@@ -69,7 +69,11 @@ const viewRoles = () => {
 }
 
 const viewEmployees = () => {
-    db.query(`SELECT * FROM employee`, (err, rows) => {
+    db.query(`SELECT employee.*, role.title, role.salary
+    FROM employee
+    JOIN role
+    ON employee.role_id = role.id
+    `, (err, rows) => {
         if (err) throw err
         console.table(rows);
     });
@@ -172,3 +176,23 @@ const addEmployee = async () => {
 //                 }
 //             })
 // };
+
+`SELECT employee.*, role.title
+    AS role_title
+    FROM employee
+    LEFT JOIN role
+    ON employee.role_id = role.id
+    `
+
+// SELECT employee.*,
+//     FROM employee
+//     JOIN role
+//     ON employee.id = role.role_id
+//     JOIN department
+//     ON department.id = role.department_id
+
+//     `SELECT employee.*, role.title, role.salary
+//     FROM employee
+//     JOIN role
+//     ON employee.role_id = role.id
+//     `
