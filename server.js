@@ -55,7 +55,7 @@ const promptCompany = async () => {
 promptCompany();
 
 const viewDepartments = () => {
-    db.query(`SELECT * department`, (err, rows) => {
+    db.query(`SELECT * FROM department`, (err, rows) => {
         if (err) throw err
         console.table(rows);
     });
@@ -136,7 +136,7 @@ const addEmployee = async () => {
             {
                 type: 'input',
                 name: 'roleID',
-                message: "What is the employee's ID?"
+                message: "What is the employee's role ID?"
             },
             {
                 type: 'input',
@@ -177,12 +177,12 @@ const addEmployee = async () => {
 //             })
 // };
 
-`SELECT employee.*, role.title
-    AS role_title
-    FROM employee
-    LEFT JOIN role
-    ON employee.role_id = role.id
-    `
+// `SELECT employee.*, role.title
+//     AS role_title
+//     FROM employee
+//     LEFT JOIN role
+//     ON employee.role_id = role.id
+//     `
 
 // SELECT employee.*,
 //     FROM employee
@@ -196,3 +196,4 @@ const addEmployee = async () => {
 //     JOIN role
 //     ON employee.role_id = role.id
 //     `
+
