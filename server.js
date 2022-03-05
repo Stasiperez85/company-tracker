@@ -69,10 +69,12 @@ const viewRoles = () => {
 }
 
 const viewEmployees = () => {
-    db.query(`SELECT employee.*, role.title, role.salary
+    db.query(`SELECT employee.*, role.title, role.salary, role.department_id, department.department_name 
     FROM employee
-    JOIN role
+    LEFT JOIN role
     ON employee.role_id = role.id
+    LEFT JOIN department
+    ON role.department_id = department.id
     `, (err, rows) => {
         if (err) throw err
         console.table(rows);
