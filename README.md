@@ -35,7 +35,7 @@ Credits YouTube, google, TA’s and tutor
 
 Github Stasiperez85
 
-GitHub Links **https://github.com/Stasiperez85/welcome-to-my-team**
+GitHub Links https://github.com/Stasiperez85/company-tracker
 
 ![Screen Shot 2022-03-07 at 1 52 04 PM](https://user-images.githubusercontent.com/78401136/157120489-4051089a-2455-4bda-b674-4b1f6d03554d.png)
 
