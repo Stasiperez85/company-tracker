@@ -1,11 +1,6 @@
 const inquirer = require('inquirer');
 const db = require('./db/connection');
 
-// db.query(`SELECT * FROM department`, (err, rows) => {
-//     console.log(rows);
-// });
-
-
 
 const promptCompany = async () => {
     const answers = await inquirer
@@ -45,8 +40,10 @@ const promptCompany = async () => {
         case 'Add Employee':
             addEmployee();
             break;
+        case 'Update an employee role':
+            updateEmployee();
+            break;
         default:
-            quit();
             console.log("Hello");
     }
 
@@ -86,11 +83,11 @@ const addDepartment = async () => {
         .prompt([
             {
                 type: 'input',
-                name: 'name',
+                name: 'department_name',
                 message: "What Department would you like to add?"
             }
         ]);
-    db.query(`INSERT INTO department (name) VALUES (?)`, [answers.name], (err, rows) => {
+    db.query(`INSERT INTO department (department_name) VALUES (?)`, [answers.department_name], (err, rows) => {
         if (err) throw err
         console.table(rows);
         promptCompany();
@@ -122,6 +119,7 @@ const addRole = async () => {
         promptCompany();
     });
 };
+
 const addEmployee = async () => {
     const answers = await inquirer
         .prompt([
@@ -152,6 +150,29 @@ const addEmployee = async () => {
         promptCompany();
     });
 };
+
+const updateEmployee = async () => {
+    const answers = await inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'updateEmployee',
+                message: "What employee would you like to update?"
+            },
+            {
+                type: 'input',
+                name: 'updateRole',
+                message: "What do you want their new Role to be?"
+            }
+        ]);
+    db.query(`UPDATE role SET (updateEmployee, updateRole) VALUES (?,?)`, [answers.updateEmployee, answers.updateRole], (err, rows) => {
+        if (err) throw err
+        console.table(rows);
+        promptCompany();
+    });
+};
+
+
 // const promptCompany = () => {
 //     inquirer
 //         .prompt([
